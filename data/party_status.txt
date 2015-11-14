@@ -1,0 +1,11 @@
+Sooty          	23/50 [#####     ]
+Sweep          	22/50 [####      ]
+BodgerNBadger  	28/50 [######    ]
+TRekd       	27/50 [#####     ]
+OakieDoke      	45/50 [######### ]
+Mr Blobbly    	35/50 [#######   ]
+BasilBrush  	28/50 [######    ]
+l00zer      	18/50 [####      ]
+
+Boss: Vice's Shade
+422/750 [###########         ]
