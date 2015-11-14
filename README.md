@@ -12,7 +12,9 @@ To use:
 1. Open your terminal, navigate to where you downloaded it, and run the example usage
 
 Example usage:
-    $ cat ~/Downloads/habitica_battle.txt | python battle_summary.py
+```bash 
+cat ~/Downloads/habitica_battle.txt | python battle_summary.py
+```
 
 Example outputs:
 ```
