@@ -36,18 +36,6 @@ import sys
 import re
 import operator
 
-# Regex examples
-# $name casts $spell for the party. $posneg$nrdays days ago$likes
-# Deena Bardsley attacks Vice's Shade for 13.5 damage, Vice's Shade attacks
-# party for 0.0 damage. -2 days
-
-# attack = re.compile(r"""
-# ^([a-zA-z ]+) attacks\s
-# ([a-zA-z' ]+) for\s
-# ([0-9\.]+) damage,\s
-# [a-zA-z' ]+ attacks party for\s
-# ([0-9\.]+) damage
-# """, re.VERBOSE)
 attack = re.compile("^([a-zA-z0-9 ]+) attacks ([a-zA-z' ]+) for ([0-9\.]+) "
                     "damage, [a-zA-z' ]+ attacks party for ([0-9\.]+) damage")
 
