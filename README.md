@@ -4,7 +4,7 @@ Scripts for habitica based fun
 ## Scripts
 
 ### battle_summary.py
-<img src="img/battle_summary_out.png" alt="battle_summary.py output" width="300px">
+<img src="img/battle_summary_out.png" alt="battle_summary.py output" width="500px">
 
 To use:
 
