@@ -3,7 +3,10 @@ Scripts for habitica based fun
 
 ## Scripts
 
-### battle_summary.py
+- [battle_summary.py](#battle-summary)
+- [party_status.py](#party-status)
+
+### Battle Summary
 <img src="img/battle_summary_out.png" alt="battle_summary.py output" width="500px">
 
 ##### Instructions:
@@ -49,4 +52,8 @@ Achievements
 
 ##### Example input:  
 [Input file](data/habitica_battle.txt)
+
+
+### Party Status
+TODO
 
