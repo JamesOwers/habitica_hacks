@@ -54,15 +54,15 @@ Achievements
 [Input file](data/habitica_battle.txt)
 
 ### Party Status
-This file takes the JSON-formatted party info downloaded by [dl_party_info.sh](dl_party_info.sh) and prints the names of the party members along with their health.
+This file takes the JSON-formatted party info downloaded by [dl_habitica_info.sh](dl_habitica_info.sh) and prints the names of the party members along with their health.
 
 ##### Example usage:
-Your API key needs to be accessible to dl_party_info.sh.
+Your API key needs to be accessible to dl_habitica_info.sh.
 ```bash
 echo "my api key" > api_key
 echo "my user id" > user_id
 ```
 Now you can run it and pipe the output to [party_status.py](party_status.py).
 ```bash 
-./dl_party_info.sh | ./party_status.py
+./dl_habitica_info.sh | ./party_status.py
 ```
