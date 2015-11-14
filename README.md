@@ -8,7 +8,7 @@ Scripts for habitica based fun
 
 
 ### Party Status
-<img src="img/party_status_out.png" alt="party_status.py output" width="500px">
+<img src="img/party_status_out.png" alt="party_status.py output" width="230px">
 
 This file takes the JSON-formatted party info downloaded by [dl_habitica_info.sh](dl_habitica_info.sh) and prints the names of the party members along with their health.
 
