@@ -12,19 +12,26 @@ Battle Summary
 
 User               | Damage given | Damage taken | K/D Ratio
 -------------------|--------------|--------------|----------
-Nyne               | 29.2         | 3.0          | 9.73333333333
-Sploshy            | 21.3         | 5.9          | 3.61016949153
-Deena Bardsley     | 40.3         | 8.2          | 4.91463414634
-kungfujam          | 64.8         | 2.2          | 29.4545454545
-onemorego          | 102.4        | 2.6          | 39.3846153846
-Jozef Mokry        | 7.5          | 3.0          | 2.5      
+Nyne               | 40.2         | 4.2          | 9.6      
+Deena Bardsley     | 40.3         | 8.2          | 4.9      
+s0min              | 17.2         | 0.0          | 17.2     
+Sploshy            | 28.6         | 7.4          | 3.9      
+onemorego          | 127.0        | 2.6          | 48.8     
+kungfujam          | 64.8         | 2.2          | 29.5     
+Jozef Mokry        | 10.1         | 3.0          | 3.4      
 
 Achievements
 -------------
-*Best player*:      onemorego (39.4 K/D Ratio)  
-*Damp squib*:       Jozef Mokry (2.5 K/D Ratio)  
+*Best player*:      onemorego (48.8 K/D Ratio)  
+*Bravery*:          Sploshy (4 attacks)  
+*Coward*:           kungfujam (only 2 attacks)  
+*Damp squib*:       Jozef Mokry (3.4 K/D Ratio)  
 *The Warrior*:      onemorego (79.8 HP in one attack)  
+*The Weakling*:     Jozef Mokry (3.8 HP in one attack)  
+*Useless*:          Jozef Mokry (10.1 HP total attack)  
 *Friendly Fire*:    Deena Bardsley (-6.7 HP taken from group in one day)  
+*Liability*:        Deena Bardsley (-8.2 HP total taken from group)  
+*Safe bet*:         s0min (-0.0 only HP total taken from group)  
 """
 import sys
 import re
