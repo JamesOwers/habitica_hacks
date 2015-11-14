@@ -1,37 +1,36 @@
 #!/usr/bin/env python
 """
-Take as input copy paste from chat and outputs a summary of the battle
+Takes as input a copy and paste from the social chat and outputs a summary of the battle
 
 Example usage:
-    $ cat ~/Downloads/habitica_battle.txt | python battle_summary.py
+    $ cat ./data/habitica_battle.txt | python battle_summary.py
 
 Example outputs:
-
 Battle Summary
 ==============
 
 User               | Damage given | Damage taken | K/D Ratio
 -------------------|--------------|--------------|----------
-Nyne               | 40.2         | 4.2          | 9.6      
-Deena Bardsley     | 40.3         | 8.2          | 4.9      
-s0min              | 17.2         | 0.0          | 17.2     
-Sploshy            | 28.6         | 7.4          | 3.9      
-onemorego          | 127.0        | 2.6          | 48.8     
-kungfujam          | 64.8         | 2.2          | 29.5     
-Jozef Mokry        | 10.1         | 3.0          | 3.4      
+Sooty              | 38.5         | 1.5          | 25.7     
+BodgerNBadger      | 4.9          | 3.0          | 1.6      
+Sweep              | 102.4        | 2.6          | 39.4     
+l00zr              | 11.9         | 0.0          | 11.9     
+Mr Blobby          | 29.2         | 3.0          | 9.7      
+TRekd              | 64.8         | 2.2          | 29.5     
+OakieDoke          | 21.3         | 5.9          | 3.6      
 
 Achievements
 -------------
-*Best player*:      onemorego (48.8 K/D Ratio)  
-*Bravery*:          Sploshy (4 attacks)  
-*Coward*:           kungfujam (only 2 attacks)  
-*Damp squib*:       Jozef Mokry (3.4 K/D Ratio)  
-*The Warrior*:      onemorego (79.8 HP in one attack)  
-*The Weakling*:     Jozef Mokry (3.8 HP in one attack)  
-*Useless*:          Jozef Mokry (10.1 HP total attack)  
-*Friendly Fire*:    Deena Bardsley (-6.7 HP taken from group in one day)  
-*Liability*:        Deena Bardsley (-8.2 HP total taken from group)  
-*Safe bet*:         s0min (-0.0 only HP total taken from group)  
+*Best player*:  	Sweep (39.4 K/D Ratio)  
+*Bravery*:      	Sweep (3 attacks)  
+*Coward*:       	Sooty (only 2 attacks)  
+*Damp squib*:   	BodgerNBadger (1.6 K/D Ratio)  
+*The Warrior*:  	Sweep (79.8 HP in one attack)  
+*The Weakling*: 	BodgerNBadger (3.8 HP in one attack)  
+*Useless*:      	BodgerNBadger (4.9 HP total attack)  
+*Friendly Fire*:	OakieDoke (-3.1 HP taken from group in one day)  
+*Liability*:    	OakieDoke (-5.9 HP total taken from group)  
+*Safe bet*:     	l00zr (-0.0 only HP total taken from group) 
 """
 import sys
 import re
