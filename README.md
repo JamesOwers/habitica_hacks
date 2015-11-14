@@ -4,21 +4,21 @@ Scripts for habitica based fun
 ## Scripts
 
 ### battle_summary.py
-<img src="img/battle_summary_out.png" alt="battle_summary.py output" width="300px">
+<img src="img/battle_summary_out.png" alt="battle_summary.py output" width="500px">
 
-To use:
+##### Instructions:
 
 1. Go to Habitica [Social > Party](img/party.png), and copy the contents of the [party chat](img/party_chat.png) into a text file. I've called mine [`habitica_battle.txt`](data/habitica_battle.txt) and put it in the Downloads folder; if you choose somewhere different, replace `~/Downloads/habitica_battle.txt` in the usage below
 1. Download the python file `battle_summary.py`
 1. Open your terminal, navigate to where you downloaded it, and run the example usage
 1. The output is in markdown format, you can paste it back into the party chat to get a formatted table
 
-Example usage:
+##### Example usage:
 ```bash 
 cat ~/Downloads/habitica_battle.txt | python battle_summary.py
 ```
 
-Example outputs:
+##### Example outputs:
 ```
 Battle Summary
 ==============
@@ -47,6 +47,6 @@ Achievements
 *Safe bet*:     	l00zr (-0.0 only HP total taken from group) 
 ```
 
-Example input:  
+##### Example input:  
 [Input file](data/habitica_battle.txt)
 
