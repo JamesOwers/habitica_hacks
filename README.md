@@ -3,8 +3,24 @@ Scripts for habitica based fun
 
 ## Scripts
 
-- [battle_summary.py](#battle-summary)
 - [party_status.py](#party-status)
+- [battle_summary.py](#battle-summary)
+
+
+### Party Status
+This file takes the JSON-formatted party info downloaded by [dl_habitica_info.sh](dl_habitica_info.sh) and prints the names of the party members along with their health.
+
+##### Example usage:
+Your API key needs to be accessible to dl_habitica_info.sh.
+```bash
+echo "my api key" > api_key
+echo "my user id" > user_id
+```
+Now you can run it and pipe the output to [party_status.py](party_status.py).
+```bash 
+./dl_habitica_info.sh | ./party_status.py
+```
+
 
 ### Battle Summary
 <img src="img/battle_summary_out.png" alt="battle_summary.py output" width="500px">
@@ -52,17 +68,3 @@ Achievements
 
 ##### Example input:  
 [Input file](data/habitica_battle.txt)
-
-### Party Status
-This file takes the JSON-formatted party info downloaded by [dl_habitica_info.sh](dl_habitica_info.sh) and prints the names of the party members along with their health.
-
-##### Example usage:
-Your API key needs to be accessible to dl_habitica_info.sh.
-```bash
-echo "my api key" > api_key
-echo "my user id" > user_id
-```
-Now you can run it and pipe the output to [party_status.py](party_status.py).
-```bash 
-./dl_habitica_info.sh | ./party_status.py
-```
