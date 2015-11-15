@@ -31,18 +31,23 @@ def progress_bar(value, max_value, width):
     sys.stdout.write(']')
 
 
+title = "Party Status"
+sys.stdout.write('{}\n{}\n\n'.format(title, len(title)*"="))
+
+
 # Print names and health
 max_health = 50
 health_bar_width = 10
-sys.stdout.write('{}\t{}/{} {}\t{}/{}\n'.format(
-        "Name".ljust(15),
-        "hp",
-        "max",
-        " "*health_bar_width,
-        "exp".rjust(4),
-        "max".ljust(4)
-    )
-)
+topline = [
+    "Name".ljust(15) + '\t',
+    "hp/max",
+    " "*(health_bar_width+2) + '\t',
+    "exp".rjust(4) + '/' + "max".ljust(4) + " ",
+    " "*(exp_bar_width+2)
+]
+tlstr = "".join(topline)
+sys.stdout.write(tlstr + '\n')
+sys.stdout.write("-"*len(tlstr.expandtabs(8)) + '\n')
 for member in members:
     name = member["profile"]["name"]
     lvl = member["stats"]["lvl"]
