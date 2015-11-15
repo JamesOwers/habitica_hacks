@@ -27,17 +27,12 @@ def progress_bar(value, max_value, width):
     for i in range(int(round(width*value/max_value))):
         sys.stdout.write('#')
     for i in range(int(round(width*(max_value-value)/max_value))):
-        sys.stdout.write(' ')
+        sys.stdout.write('-')
     sys.stdout.write(']')
 
 
 title = "Party Status"
 sys.stdout.write('{}\n{}\n\n'.format(title, len(title)*"="))
-
-
-# Print names and health
-max_health = 50
-health_bar_width = 10
 topline = [
     "Name".ljust(15) + '\t',
     "hp/max",
@@ -47,7 +42,9 @@ topline = [
 ]
 tlstr = "".join(topline)
 sys.stdout.write(tlstr + '\n')
-sys.stdout.write("-"*len(tlstr.expandtabs(8)) + '\n')
+sys.stdout.write("-"*len(tlstr.expandtabs(8)) + '  \n')
+
+# Print names and health
 for member in members:
     name = member["profile"]["name"]
     lvl = member["stats"]["lvl"]
@@ -67,7 +64,7 @@ for member in members:
         )
     )
     progress_bar(exp, max_exp, exp_bar_width)
-    sys.stdout.write('\n')
+    sys.stdout.write('  \n')
 
 # Print current boss and its health
 if "quest" in party_info and "key" in party_info["quest"]:
