@@ -12,11 +12,11 @@ exp_bar_width = 10          # Width of player exp bars
 boss_health_bar_width = 20  # Width of boss' health bar
 #-----------------------------------------------------------#
 
+
 content_json = sys.stdin.readline()
 party_json = sys.stdin.readline()
 habitica_content = json.loads(content_json)
 party_info = json.loads(party_json)
-
 messages = party_info["chat"]
 members = party_info["members"]
 
@@ -34,15 +34,15 @@ def progress_bar(value, max_value, width):
 title = "Party Status"
 sys.stdout.write('{}\n{}\n\n'.format(title, len(title)*"="))
 topline = [
-    "Name".ljust(15) + '\t',
-    "hp/max",
-    " "*(health_bar_width+2) + '\t',
-    "exp".rjust(4) + '/' + "max".ljust(4) + " ",
-    " "*(exp_bar_width+2)
+    " Name".ljust(15) + '\t',
+    " hp/max" + " "*(health_bar_width+2) + '\t',
+    " " + "exp".rjust(4) + '/' + "max".ljust(4) + " "*(exp_bar_width+3)
 ]
-tlstr = "".join(topline)
+tlstr = "|".join(topline)
 sys.stdout.write(tlstr + '\n')
-sys.stdout.write("-"*len(tlstr.expandtabs(8)) + '  \n')
+ul = ' -' + ' | '.join(['-'*len(x.expandtabs(8)[:-3]) for x in topline])
+sys.stdout.write(ul + '  \n')
+
 
 # Print names and health
 for member in members:
@@ -51,20 +51,24 @@ for member in members:
     exp = member["stats"]["exp"]
     max_exp = 0.25*lvl**2 + 10*lvl + 139.75
     hp = member["stats"]["hp"]
-    sys.stdout.write('{}\t{}/{} '.format(
+    sys.stdout.write('{}\t| {}/{} '.format(
             name.ljust(15),
             int(round(hp)),
             max_health
         )
     )
     progress_bar(hp, max_health, health_bar_width)
-    sys.stdout.write('\t{}/{} '.format(
+    sys.stdout.write('\t| {}/{} '.format(
             str(int(round(exp))).rjust(4),
             str(int(round(max_exp))).ljust(4)
         )
     )
     progress_bar(exp, max_exp, exp_bar_width)
     sys.stdout.write('  \n')
+
+
+title = "Boss Status"
+sys.stdout.write('\n\n{}\n{}\n'.format(title, len(title)*"-"))
 
 # Print current boss and its health
 if "quest" in party_info and "key" in party_info["quest"]:
@@ -74,7 +78,7 @@ if "quest" in party_info and "key" in party_info["quest"]:
         boss_hp = party_info["quest"]["progress"]["hp"]
         boss_max_hp = quest["boss"]["hp"]
         boss_name = quest["boss"]["name"]
-        print '\nBoss: {}'.format(boss_name)
+        print 'Boss: {}'.format(boss_name)
         sys.stdout.write('{}/{} '.format(int(round(boss_hp)), boss_max_hp))
         progress_bar(boss_hp, boss_max_hp, boss_health_bar_width)
-        sys.stdout.write('\n')
+        sys.stdout.write('\n\n')
