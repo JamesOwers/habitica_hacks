@@ -4,6 +4,7 @@
 
 import json
 import sys
+import printing
 
 # Config ---------------------------------------------------#
 max_health = 50             # Maximum player health
@@ -12,7 +13,6 @@ exp_bar_width = 10          # Width of player exp bars
 boss_health_bar_width = 20  # Width of boss' health bar
 #-----------------------------------------------------------#
 
-
 content_json = sys.stdin.readline()
 party_json = sys.stdin.readline()
 habitica_content = json.loads(content_json)
@@ -20,52 +20,25 @@ party_info = json.loads(party_json)
 messages = party_info["chat"]
 members = party_info["members"]
 
-
-# Draw a progress bar
-def progress_bar(value, max_value, width):
-    sys.stdout.write('[')
-    for i in range(int(round(width*value/max_value))):
-        sys.stdout.write('#')
-    for i in range(int(round(width*(max_value-value)/max_value))):
-        sys.stdout.write('-')
-    sys.stdout.write(']')
-
-
 title = "Party Status"
 sys.stdout.write('{}\n{}\n\n'.format(title, len(title)*"="))
-topline = [
-    " Name".ljust(15) + '\t',
-    " hp/max" + " "*(health_bar_width+2) + '\t',
-    " " + "exp".rjust(4) + '/' + "max".ljust(4) + " "*(exp_bar_width+3)
-]
-tlstr = "|".join(topline)
-sys.stdout.write(tlstr + '\n')
-ul = ' -' + ' | '.join(['-'*len(x.expandtabs(8)[:-3]) for x in topline])
-sys.stdout.write(ul + '  \n')
 
 
-# Print names and health
+party_table = printing.table(["Name", "HP/Max HP", "XP/Max XP"])
+
 for member in members:
     name = member["profile"]["name"]
     lvl = member["stats"]["lvl"]
     exp = member["stats"]["exp"]
     max_exp = round((0.25*lvl**2 + 10*lvl + 139.75)/10)*10
     hp = member["stats"]["hp"]
-    sys.stdout.write('{}\t| {}/{} '.format(
-            name.ljust(15),
-            int(round(hp)),
-            max_health
-        )
-    )
-    progress_bar(hp, max_health, health_bar_width)
-    sys.stdout.write('\t| {}/{} '.format(
-            str(int(round(exp))).rjust(4),
-            str(int(round(max_exp))).ljust(4)
-        )
-    )
-    progress_bar(exp, max_exp, exp_bar_width)
-    sys.stdout.write('  \n')
+    party_table.add_row([name, \
+        str(int(round(hp))) + '/' + str(max_health) + ' ' + \
+            printing.progress_bar(hp, max_health, health_bar_width), \
+        str(int(round(exp))).rjust(4) + '/' + str(int(max_exp)).ljust(4) + ' ' + \
+            printing.progress_bar(exp, max_exp, exp_bar_width)])
 
+print party_table
 
 title = "Boss Status"
 sys.stdout.write('\n\n{}\n{}\n'.format(title, len(title)*"-"))
@@ -80,5 +53,6 @@ if "quest" in party_info and "key" in party_info["quest"]:
         boss_name = quest["boss"]["name"]
         print 'Boss: {}'.format(boss_name)
         sys.stdout.write('{}/{} '.format(int(round(boss_hp)), boss_max_hp))
-        progress_bar(boss_hp, boss_max_hp, boss_health_bar_width)
+        sys.stdout.write(printing.progress_bar(boss_hp, boss_max_hp, boss_health_bar_width))
         sys.stdout.write('\n\n')
+        
