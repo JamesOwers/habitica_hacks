@@ -49,7 +49,7 @@ for member in members:
     name = member["profile"]["name"]
     lvl = member["stats"]["lvl"]
     exp = member["stats"]["exp"]
-    max_exp = 0.25*lvl**2 + 10*lvl + 139.75
+    max_exp = round((0.25*lvl**2 + 10*lvl + 139.75)/10)*10
     hp = member["stats"]["hp"]
     sys.stdout.write('{}\t| {}/{} '.format(
             name.ljust(15),
