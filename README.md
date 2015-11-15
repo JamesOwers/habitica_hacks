@@ -10,7 +10,7 @@ Scripts for habitica based fun
 ### Party Status
 <img src="img/party_status_out.png" alt="party_status.py output" width="230px">
 
-This file takes the JSON-formatted party info downloaded by [dl_habitica_info.sh](dl_habitica_info.sh) and prints the names of the party members along with their health.
+[party_status.py](party_status.py) takes the JSON-formatted party info downloaded by [dl_habitica_info.sh](dl_habitica_info.sh) and prints the names of the party members along with their health.
 
 ##### Example usage:
 Your API key needs to be accessible to dl_habitica_info.sh.
@@ -30,7 +30,7 @@ Now you can run it and pipe the output to [party_status.py](party_status.py).
 ##### Instructions:
 
 1. Go to Habitica [Social > Party](img/party.png), and copy the contents of the [party chat](img/party_chat.png) into a text file. I've called mine [`habitica_battle.txt`](data/habitica_battle.txt) and put it in the Downloads folder; if you choose somewhere different, replace `~/Downloads/habitica_battle.txt` in the usage below
-1. Download the python file `battle_summary.py`
+1. Download the python file [battle_summary.py](battle_summary.py)
 1. Open your terminal, navigate to where you downloaded it, and run the example usage
 1. The output is in markdown format, you can paste it back into the party chat to get a formatted table
 
