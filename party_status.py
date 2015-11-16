@@ -5,6 +5,7 @@
 import json
 import sys
 import printing
+import battle
 
 # Config ---------------------------------------------------#
 max_health = 50             # Maximum player health
@@ -51,4 +52,4 @@ if "quest" in party_info and "key" in party_info["quest"]:
         sys.stdout.write('{}/{} '.format(int(round(boss_hp)), boss_max_hp))
         sys.stdout.write(printing.progress_bar(boss_hp, boss_max_hp, boss_health_bar_width))
         sys.stdout.write('\n\n')
-        
+        print battle.summary(messages, boss_name)
