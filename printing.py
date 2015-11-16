@@ -40,7 +40,10 @@ class table:
                 string += str(self.content[j][i]).ljust(widths[j]) + ' | '
             string += '\n'
             if i == 0:
-                string += '|' + '-'*(sum(widths)+len(self.content)*3 - 1) + '| \n'
+                string += '|'
+                for width in widths:
+                    string += '-'*(width+2) + '|'
+                string += ' \n'
         
         return string
 
@@ -49,5 +52,5 @@ def progress_bar(value, max_value, width):
     Create string such as [####-----].
     """
     num_hashes = int(round(width*value/max_value))
-    num_dashes = int(round(width*(max_value-value)/max_value))
+    num_dashes = width-num_hashes
     return '[' + '#'*num_hashes + '-'*num_dashes + ']'
