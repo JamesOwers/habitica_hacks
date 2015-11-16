@@ -54,3 +54,21 @@ def progress_bar(value, max_value, width):
     num_hashes = int(round(width*value/max_value))
     num_dashes = width-num_hashes
     return '[' + '#'*num_hashes + '-'*num_dashes + ']'
+
+def title(string, level):
+    """
+    Create title string. H1 and H2 (levels 1 and 2) are drawn with = and -
+    below them. Lower levels are drawn with the appropriate number of #s before
+    the title string.
+
+    Usage:
+    print title('Heading 1', 1)
+    """
+    if level==1:
+        return string + '\n' + '='*len(string)
+    if level==2:
+        return string + '\n' + '-'*len(string)
+    if level>2:
+        return '#'*level + ' ' + string
+    raise ValueError('Second argument to title() must be a positive integer')
+

@@ -20,12 +20,10 @@ party_info = json.loads(party_json)
 messages = party_info["chat"]
 members = party_info["members"]
 
-title = "Party Status"
-sys.stdout.write('{}\n{}\n\n'.format(title, len(title)*"="))
-
+# Print names, health and XP of party members.
+print printing.title("Party Status", 1)
 
 party_table = printing.table(["Name", "HP/Max HP", "XP/Max XP"])
-
 for member in members:
     name = member["profile"]["name"]
     lvl = member["stats"]["lvl"]
@@ -37,13 +35,11 @@ for member in members:
             printing.progress_bar(hp, max_health, health_bar_width), \
         str(int(round(exp))).rjust(4) + '/' + str(int(max_exp)).ljust(4) + ' ' + \
             printing.progress_bar(exp, max_exp, exp_bar_width)])
-
 print party_table
 
-title = "Boss Status"
-sys.stdout.write('\n\n{}\n{}\n'.format(title, len(title)*"-"))
+# Print current boss and its health.
+print printing.title("Boss Status", 2)
 
-# Print current boss and its health
 if "quest" in party_info and "key" in party_info["quest"]:
     quest_key = party_info["quest"]["key"]
     quest = habitica_content["quests"][quest_key]
