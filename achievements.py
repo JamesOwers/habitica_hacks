@@ -46,7 +46,7 @@ class bravery(achievement):
         attacks = {key: value["nrAttacks"] for key, value in dmgDict.iteritems()}
         self.player, self.num = max(attacks.iteritems(), key=operator.itemgetter(1))
     def get_explanation(self):
-        return "{:.1f} attacks".format(self.num)
+        return "{} attacks".format(self.num)
         
 class coward(achievement):
     def __init__(self, dmgDict):
@@ -56,7 +56,7 @@ class coward(achievement):
         attacks = {key: value["nrAttacks"] for key, value in dmgDict.iteritems()}
         self.player, self.num = min(attacks.iteritems(), key=operator.itemgetter(1))
     def get_explanation(self):
-        return "only {:.1f} attacks".format(self.num)
+        return "only {} attacks".format(self.num)
         
 class warrior(achievement):
     def __init__(self, dmgDict):
