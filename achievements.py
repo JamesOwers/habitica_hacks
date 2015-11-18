@@ -24,9 +24,8 @@ class best_player(achievement):
         self.title = "Best player"
         # Max damage ratio
         kds = {key: value["kd"] for key, value in dmgDict.iteritems()}
-        self.player, self.kd = max(kds.iteritems(), key=operator.itemgetter(1))
-    def get_explanation(self):
-        return "{:.1f} K/D ratio".format(self.kd)
+        self.player, self.weight = max(kds.iteritems(), key=operator.itemgetter(1))
+        self.explanation = "{:.1f} K/D ratio".format(self.weight)
         
 class damp_squib(achievement):
     def __init__(self, dmgDict):
@@ -35,8 +34,8 @@ class damp_squib(achievement):
         # Min damage ratio
         kds = {key: value["kd"] for key, value in dmgDict.iteritems()}
         self.player, self.kd = min(kds.iteritems(), key=operator.itemgetter(1))
-    def get_explanation(self):
-        return "{:.1f} K/D ratio".format(self.kd)
+        self.explanation = "{:.1f} K/D ratio".format(self.kd)
+        self.weight = 1./(self.kd + 1)
         
 class bravery(achievement):
     def __init__(self, dmgDict):
@@ -45,8 +44,10 @@ class bravery(achievement):
         # Max number of attacks
         attacks = {key: value["nrAttacks"] for key, value in dmgDict.iteritems()}
         self.player, self.num = max(attacks.iteritems(), key=operator.itemgetter(1))
-    def get_explanation(self):
-        return "{} attacks".format(self.num)
+        other_players = {key: value["nrAttacks"] for key, value in dmgDict.iteritems() \
+            if value["nrAttacks"] == self.num}
+        self.weight = 100 if len(other_players) == 0 else -1
+        self.explanation = "{} attacks".format(self.num)
         
 class coward(achievement):
     def __init__(self, dmgDict):
@@ -55,8 +56,10 @@ class coward(achievement):
         # Min number of attacks
         attacks = {key: value["nrAttacks"] for key, value in dmgDict.iteritems()}
         self.player, self.num = min(attacks.iteritems(), key=operator.itemgetter(1))
-    def get_explanation(self):
-        return "only {} attacks".format(self.num)
+        other_players = {key: value["nrAttacks"] for key, value in dmgDict.iteritems() \
+            if value["nrAttacks"] == self.num}
+        self.weight = 100 if len(other_players) == 0 else -1
+        self.explanation = "only {} attacks".format(self.num)
         
 class warrior(achievement):
     def __init__(self, dmgDict):
@@ -64,9 +67,8 @@ class warrior(achievement):
         self.title = "The Warrior"
         # Max HP in one attack
         attacks = {key: value["maxAttack"] for key, value in dmgDict.iteritems()}
-        self.player, self.hp = max(attacks.iteritems(), key=operator.itemgetter(1))
-    def get_explanation(self):
-        return "{:.1f} HP in one attack".format(self.hp)
+        self.player, self.weight = max(attacks.iteritems(), key=operator.itemgetter(1))
+        self.explanation = "{:.1f} HP in one attack".format(self.weight)
         
 class weakling(achievement):
     def __init__(self, dmgDict):
@@ -75,8 +77,8 @@ class weakling(achievement):
         # Min HP in one attack
         attacks = {key: value["maxAttack"] for key, value in dmgDict.iteritems()}
         self.player, self.hp = min(attacks.iteritems(), key=operator.itemgetter(1))
-    def get_explanation(self):
-        return "{:.1f} HP in one attack".format(self.hp)
+        self.explanation = "{:.1f} HP in one attack".format(self.hp)
+        self.weight = 1./(self.hp + 1)
         
 class useless(achievement):
     def __init__(self, dmgDict):
@@ -85,8 +87,8 @@ class useless(achievement):
         # Min damage dealt
         attacks = {key: value["damageGiven"] for key, value in dmgDict.iteritems()}
         self.player, self.hp = min(attacks.iteritems(), key=operator.itemgetter(1))
-    def get_explanation(self):
-        return "{:.1f} HP total attack".format(self.hp)
+        self.explanation = "{:.1f} HP total attack".format(self.hp)
+        self.weight = 1./(self.hp + 1)
         
 class friendly_fire(achievement):
     def __init__(self, dmgDict):
@@ -94,9 +96,8 @@ class friendly_fire(achievement):
         self.title = "Friendly Fire"
         # Max single damage dealt to group
         FUs = {key: value["maxFU"] for key, value in dmgDict.iteritems()}
-        self.player, self.hp = max(FUs.iteritems(), key=operator.itemgetter(1))
-    def get_explanation(self):
-        return "{:.1f} HP taken from group in one day".format(self.hp)
+        self.player, self.weight = max(FUs.iteritems(), key=operator.itemgetter(1))
+        self.explanation = "{:.1f} HP taken from group in one day".format(self.weight)
         
 class liability(achievement):
     def __init__(self, dmgDict):
@@ -104,9 +105,8 @@ class liability(achievement):
         self.title = "Liability"
         # Max total damage dealt to group
         FUs = {key: value["damageTaken"] for key, value in dmgDict.iteritems()}
-        self.player, self.hp = max(FUs.iteritems(), key=operator.itemgetter(1))
-    def get_explanation(self):
-        return "{:.1f} HP total taken from group".format(self.hp)
+        self.player, self.weight = max(FUs.iteritems(), key=operator.itemgetter(1))
+        self.explanation = "{:.1f} HP total taken from group".format(self.weight)
         
 class safe_bet(achievement):
     def __init__(self, dmgDict):
@@ -115,8 +115,8 @@ class safe_bet(achievement):
         # Min total damage dealt to group
         FUs = {key: value["damageTaken"] for key, value in dmgDict.iteritems()}
         self.player, self.hp = min(FUs.iteritems(), key=operator.itemgetter(1))
-    def get_explanation(self):
-        return "only {:.1f} HP total taken from group".format(self.hp)
+        self.explanation = "only {:.1f} HP total taken from group".format(self.hp)
+        self.weight = 1./(self.hp + 1)
 
 def get_achievement_dict(dmgDict):
     achmts = [best_player(dmgDict),\

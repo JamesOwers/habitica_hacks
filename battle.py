@@ -54,6 +54,7 @@ class summary:
         
         string += printing.title("Achievements", 2) + '\n'
         for key in self.achmts.iterkeys():
-            string += repr(key) + '\n'
+            if self.achmts[key] > 0:
+                string += repr(key) + '\n'
             
         return string
