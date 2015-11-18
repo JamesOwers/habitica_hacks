@@ -43,11 +43,12 @@ class summary:
     
     def __repr__(self):
         string = printing.title("Battle Summary", 1) + '\n'
-        summary_table = printing.table(['User', 'Damage given', 'Damage taken', 'K/D ratio'])
+        summary_table = printing.table(['User', 'Damage given', 'Damage taken', 'Nr. Attacks', 'K/D ratio'])
         for key, value in self.dmgDict.iteritems():
-            summary_table.add_row([key, \
-                "{:.1f}".format(value["damageGiven"]), \
-                "{:.1f}".format(value["damageTaken"]), \
+            summary_table.add_row([key,
+                "{:.1f}".format(value["damageGiven"]),
+                "{:.1f}".format(value["damageTaken"]),
+                "{:.0f}".format(value["nrAttacks"]),
                 "{:.1f}".format(value["kd"])])
         string += repr(summary_table) + '\n\n'
         
