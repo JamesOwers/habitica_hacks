@@ -47,13 +47,14 @@ class table:
         
         return string
 
-def progress_bar(value, max_value, width):
+def progress_bar(value, max_value, width, fill_char='#', space_char='-'):
     """
     Create string such as [####-----].
     """
+    value = min(max(value, 0), max_value)
     num_hashes = int(round(width*value/max_value))
     num_dashes = width-num_hashes
-    return '[' + '#'*num_hashes + '-'*num_dashes + ']'
+    return '[' + fill_char*num_hashes + space_char*num_dashes + ']'
 
 def title(string, level):
     """
