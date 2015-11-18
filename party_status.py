@@ -38,10 +38,10 @@ for member in members:
             printing.progress_bar(exp, max_exp, exp_bar_width)])
 print party_table
 
-# Print current boss and its health.
-print printing.title("Boss Status", 2)
 
-if "quest" in party_info and "key" in party_info["quest"]:
+if "quest" in party_info and party_info["quest"]:
+    # Print current boss and its health.
+    print printing.title("Boss Status", 2)
     quest_key = party_info["quest"]["key"]
     quest = habitica_content["quests"][quest_key]
     if "boss" in quest:
