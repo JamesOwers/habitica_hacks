@@ -4,13 +4,12 @@ Scripts for habitica based fun
 ## Scripts
 
 - [party_status.py](#party-status)
-- [battle_summary.py](#battle-summary)
 
 
 ### Party Status
 <img src="img/party_status_out.png" alt="party_status.py output" width="230px">
 
-[party_status.py](party_status.py) takes the JSON-formatted party info downloaded by [dl_habitica_info.sh](dl_habitica_info.sh) and prints the names of the party members along with their health.
+[party_status.py](party_status.py) takes the JSON-formatted party info downloaded by [dl_habitica_info.sh](dl_habitica_info.sh) and prints the names of the party members along with their health and current experience. If the party is on a quest, it shows the health of the boss with some stats about the battle.
 
 ##### Example usage:
 Your API key needs to be accessible to dl_habitica_info.sh.
@@ -24,7 +23,7 @@ Now you can run it and pipe the output to [party_status.py](party_status.py).
 ```
 
 
-### Battle Summary
+### [Archived] Battle Summary
 <img src="img/battle_summary_out.png" alt="battle_summary.py output" width="500px">
 
 ##### Instructions:
