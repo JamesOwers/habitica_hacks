@@ -24,6 +24,7 @@ Now you can run it and pipe the output to [party_status.py](party_status.py).
 
 
 ### [Archived] Battle Summary
+Now contained within party status. This script runs against a text file copy of the chat, not the habitica API.
 <img src="img/battle_summary_out.png" alt="battle_summary.py output" width="500px">
 
 ##### Instructions:
