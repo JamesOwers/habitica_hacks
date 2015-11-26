@@ -7,8 +7,8 @@ class summary:
         """
         Construct a battle summary based on the party chat.
         """
-        attack = re.compile("\`([a-zA-z0-9 ]+) attacks ([a-zA-z' ]+) for ([0-9\.]+) "
-                    "damage, [a-zA-z' ]+ attacks party for ([0-9\.]+) damage")
+        attack = re.compile("\`([a-zA-z0-9 ]+) attacks ([a-zA-z', ]+) for ([0-9\.]+) "
+                    "damage, [a-zA-z', ]+ attacks party for ([0-9\.]+) damage")
         # Construct dictionary which stores the data for achievements and table.
         self.dmgDict = {}
         for message in chat_json:
@@ -37,7 +37,6 @@ class summary:
                         self.dmgDict[player]['maxAttack'] = float(damage_given)
                     if float(damage_taken) > self.dmgDict[player]['maxFU']:
                         self.dmgDict[player]['maxFU'] = float(damage_taken)
-        
         # Award achievements
         self.achmts = achievements.get_achievement_dict(self.dmgDict)
     
