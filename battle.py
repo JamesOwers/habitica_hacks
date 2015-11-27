@@ -7,8 +7,8 @@ class summary:
         """
         Construct a battle summary based on the party chat.
         """
-        attack = re.compile("\`([a-zA-z0-9 ]+) attacks ([a-zA-z' ]+) for ([0-9\.]+) "
-                    "damage, [a-zA-z' ]+ attacks party for ([0-9\.]+) damage")
+        attack = re.compile("\`([a-zA-z0-9 ]+) attacks ([a-zA-z', ]+) for ([0-9\.]+) "
+                    "damage, [a-zA-z', ]+ attacks party for ([0-9\.]+) damage")
         # Construct dictionary which stores the data for achievements and table.
         self.dmgDict = {}
         for message in chat_json:
@@ -55,6 +55,6 @@ class summary:
         string += printing.title("Achievements", 2) + '\n'
         for key in self.achmts.iterkeys():
             if self.achmts[key] > 0:
-                string += repr(key) + '\n'
+                string += repr(key) + '  \n'
             
         return string

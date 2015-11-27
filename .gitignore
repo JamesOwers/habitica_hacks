@@ -1,5 +1,6 @@
 *~
 *.pyc
+*.orig
 user_id
 api_key
 cache/

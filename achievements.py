@@ -46,7 +46,7 @@ class bravery(achievement):
         self.player, self.num = max(attacks.iteritems(), key=operator.itemgetter(1))
         other_players = {key: value["nrAttacks"] for key, value in dmgDict.iteritems() \
             if value["nrAttacks"] == self.num}
-        self.weight = 100 if len(other_players) == 0 else -1
+        self.weight = self.num if len(other_players) == 1 else -1
         self.explanation = "{} attacks".format(self.num)
         
 class coward(achievement):
@@ -58,7 +58,7 @@ class coward(achievement):
         self.player, self.num = min(attacks.iteritems(), key=operator.itemgetter(1))
         other_players = {key: value["nrAttacks"] for key, value in dmgDict.iteritems() \
             if value["nrAttacks"] == self.num}
-        self.weight = 100 if len(other_players) == 0 else -1
+        self.weight = 100 if len(other_players) == 1 else -1
         self.explanation = "only {} attacks".format(self.num)
         
 class warrior(achievement):
@@ -116,18 +116,18 @@ class safe_bet(achievement):
         FUs = {key: value["damageTaken"] for key, value in dmgDict.iteritems()}
         self.player, self.hp = min(FUs.iteritems(), key=operator.itemgetter(1))
         self.explanation = "only {:.1f} HP total taken from group".format(self.hp)
-        self.weight = 1./(self.hp + 1)
+        self.weight = 1./(self.hp + 1) - 2
 
 def get_achievement_dict(dmgDict):
-    achmts = [best_player(dmgDict),\
-        bravery(dmgDict),\
-        coward(dmgDict),\
-        damp_squib(dmgDict),\
-        warrior(dmgDict),\
-        weakling(dmgDict),\
-        useless(dmgDict),\
-        friendly_fire(dmgDict),\
-        liability(dmgDict),\
+    achmts = [best_player(dmgDict),
+        bravery(dmgDict),
+        coward(dmgDict),
+        damp_squib(dmgDict),
+        warrior(dmgDict),
+        weakling(dmgDict),
+        useless(dmgDict),
+        friendly_fire(dmgDict),
+        liability(dmgDict),
         safe_bet(dmgDict)]
     achmt_dict = {}
     for achmt in achmts:
