@@ -5,7 +5,7 @@
 import json
 import sys
 import printing
-import battle
+import quest
 
 # Config ---------------------------------------------------#
 max_health = 50             # Maximum player health
@@ -41,15 +41,15 @@ print party_table
 
 if "quest" in party_info and party_info["quest"]:
     # Print current boss and its health.
-    print printing.title("Boss Status", 2)
+    print printing.title("Quest Status", 2)
     quest_key = party_info["quest"]["key"]
-    quest = habitica_content["quests"][quest_key]
-    if "boss" in quest:
+    quest_info = habitica_content["quests"][quest_key]
+    if "boss" in quest_info:
         boss_hp = party_info["quest"]["progress"]["hp"]
-        boss_max_hp = quest["boss"]["hp"]
-        boss_name = quest["boss"]["name"]
+        boss_max_hp = quest_info["boss"]["hp"]
+        boss_name = quest_info["boss"]["name"]
         print 'Boss: {}'.format(boss_name)
         sys.stdout.write('{}/{} '.format(int(round(boss_hp)), boss_max_hp))
         sys.stdout.write(printing.progress_bar(boss_hp, boss_max_hp, boss_health_bar_width))
         sys.stdout.write('\n\n')
-        print battle.summary(messages, boss_name)
+        print quest.summary(messages, boss_name)
