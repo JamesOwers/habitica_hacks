@@ -166,7 +166,7 @@ class safe_bet(achievement):
             FUs = {key: value["damageTaken"] for key, value in dmgDict.iteritems()}
             self.player, self.hp = min(FUs.iteritems(), key=operator.itemgetter(1))
             self.explanation = "only {:.1f} HP total taken from group".format(self.hp)
-            self.weight = 1./(self.hp + 1) - 2
+            self.weight = 1./(self.hp + 1)
 
 def get_achievements(m,t):
     """
@@ -182,7 +182,7 @@ def get_achievements(m,t):
         friendly_fire(m,t),
         liability(m,t),
         safe_bet(m,t)]
-    return [a for a in achmts if a.get_weight() > 0]
+    return [a for a in achmts if a.get_weight() >= 0]
 
 def get_relevant_quotation(messageid, messages):
     message = False
