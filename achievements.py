@@ -166,7 +166,9 @@ class safe_bet(achievement):
             FUs = {key: value["damageTaken"] for key, value in dmgDict.iteritems()}
             self.player, self.hp = min(FUs.iteritems(), key=operator.itemgetter(1))
             self.explanation = "only {:.1f} HP total taken from group".format(self.hp)
-            self.weight = 1./(self.hp + 1)
+            other_players = {key: value["damageTaken"] for key, value in dmgDict.iteritems() \
+                if value["damageTaken"] == self.hp}
+            self.weight = 1./(self.hp + 1) if len(other_players) == 1 else -1
 
 def get_achievements(m,t):
     """
