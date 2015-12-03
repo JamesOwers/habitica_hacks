@@ -3,18 +3,22 @@ import re
 re_player = "[\w ]+"
 re_quest = "[\w', ]+"
 re_num = "[\d\.]+"
-attack = re.compile("\`(" + re_player + ") "
+re_attack = re.compile("\`(" + re_player + ") "
             "attacks (" + re_quest + ") for (" + re_num + ") "
             "damage, " + re_quest + " attacks party for (" + re_num + ") damage.\`")
-find = re.compile("\`(" + re_player + ") found (" + re_num + ") "
+re_find = re.compile("\`(" + re_player + ") found (" + re_num + ") "
             "(" + re_quest + ").\`")
+re_complete_boss = re.compile("\`You defeated (" + re_quest + ")! Questing "
+            "party members receive the rewards of victory.\`")
+re_complete_collect = re.compile("\`All items found! Party has received their "
+            "rewards.\`")
 
 def damage_dict(messages):
     dmgDict = {}
     for message in messages:
-        if message["uuid"] == "system" and attack.match(message["text"]):
+        if message["uuid"] == "system" and re_attack.match(message["text"]):
             player, boss, damage_given, damage_taken = \
-                attack.search(message["text"]).groups()
+                re_attack.search(message["text"]).groups()
             if player in dmgDict.keys():
                 dmgDict[player]['damageGiven'] += float(damage_given)
                 dmgDict[player]['damageTaken'] += float(damage_taken)

@@ -1,0 +1,50 @@
+#!/usr/bin/env python
+"""
+Print habitica info.
+"""
+
+import achievements
+import argparse
+import json
+import party_status
+import quest
+import subprocess
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-p", "--party",
+    help="display party status", action="store_true")
+parser.add_argument("-q", "--quest",
+    help="display quest status", nargs="?", type=int, default=-1, const=0)
+parser.add_argument("-a", "--achievements",
+    help="display achievements for the current quest, or for the quest "
+    "specified in --quest", action="store_true")
+parser.add_argument("-c", "--refresh-cache",
+    help="re-download Habitica content cache", action="store_true")
+args = parser.parse_args()
+
+if args.refresh_cache:
+    print "Note: cache has not been refreshed (functionality not yet " \
+        "implemented). For now, delete the cache/ folder to refresh Habitica " \
+        "content."
+
+info = subprocess.check_output("./dl_habitica_info").split('\n')
+habitica_content = json.loads(info[0])
+party_info = json.loads(info[1])
+
+if args.party:
+    party_status.print_status(party_info)
+   
+messages = False 
+if args.quest > -1:
+    if args.quest == 0:
+        # Print current quest progress
+        quest.print_progress(habitica_content, party_info)
+    messages, quest_type, _ = \
+        quest.get_quest_messages(party_info["chat"], args.quest)
+    quest.print_table(messages, quest_type)
+    
+if args.achievements:
+    if not messages:
+        messages, quest_type, _ = \
+            quest.get_quest_messages(party_info["chat"], 0)
+    achievements.print_achievements(messages, quest_type)

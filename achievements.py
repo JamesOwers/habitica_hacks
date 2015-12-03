@@ -1,5 +1,6 @@
 import battle
 import operator
+import printing
 import re
 
 class achievement(object):
@@ -185,6 +186,16 @@ def get_achievements(m,t):
         liability(m,t),
         safe_bet(m,t)]
     return [a for a in achmts if a.get_weight() >= 0]
+    
+def print_achievements(messages, quest_type):
+    achmts = get_achievements(messages, quest_type)
+    string = printing.title("Achievements", 2) + '\n'
+    for achmt in achmts:
+        string += repr(achmt) + '  \n'
+        if achmt.get_quotation():
+            q, name = achmt.get_quotation()
+            string += '\t    "' + q + '" - ' + name + '  \n'
+    print string
 
 def get_relevant_quotation(messageid, messages):
     message = False
