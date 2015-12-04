@@ -3,25 +3,27 @@ Scripts for habitica based fun
 
 ## Scripts
 
-- [party_status.py](#party-status)
+- [habitica_info](#habitica-info)
 
 
-### Party Status
+### Habitica info
 <img src="img/party_status_out.png" alt="party_status.py output" width="230px">
 
-[party_status.py](party_status.py) takes the JSON-formatted party info downloaded by [dl_habitica_info.sh](dl_habitica_info.sh) and prints the names of the party members along with their health and current experience. If the party is on a quest, it shows the health of the boss with some stats about the battle.
+This takes a few command-line options and prints out (optionally) the party status, quest status and achievements.
 
 ##### Example usage:
-Your API key needs to be accessible to dl_habitica_info.sh.
+Your API key needs to be accessible to dl_habitica_info.
 ```bash
 echo "my api key" > api_key
 echo "my user id" > user_id
 ```
-Now you can run it and pipe the output to [party_status.py](party_status.py).
+Now you can run
 ```bash 
-./dl_habitica_info.sh | ./party_status.py
+./habitica_info -paq
 ```
+to view the party info, quest status and achievements. Command line options are -p (show party status), -q (show quest status) and -a (show achievements). -h gives the full list.
 
+You can generate reports for previous quests by specifying -q 1 to look at the previous quest, -q 2 to look at the one before, and so on.
 
 ### [Archived] Battle Summary
 Now contained within party status. This script runs against a text file copy of the chat, not the habitica API.
