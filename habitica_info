@@ -37,8 +37,12 @@ if args.party:
 messages = False 
 if args.quest > -1:
     if args.quest == 0:
-        # Print current quest progress
-        quest.print_progress(habitica_content, party_info)
+        if "quest" in party_info and party_info["quest"]:
+            # Print current quest progress
+            quest.print_progress(habitica_content, party_info)
+        else:
+            # Print most recent quest info
+            args.quest = 1
     messages, quest_type, _ = \
         quest.get_quest_messages(party_info["chat"], args.quest)
     quest.print_table(messages, quest_type)
