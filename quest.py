@@ -72,19 +72,24 @@ def generate_table(messages, quest_type):
 
 def print_progress(habitica_content, party_info):
     if "quest" in party_info and party_info["quest"]:
-        # Print current boss and its health.
+        # Print status e.g. current boss and its health.
         print printing.title("Quest Status", 2)
         quest_key = party_info["quest"]["key"]
         quest_info = habitica_content["quests"][quest_key]
-        if "boss" in quest_info:
-            boss_hp = party_info["quest"]["progress"]["hp"]
-            boss_max_hp = quest_info["boss"]["hp"]
-            boss_name = quest_info["boss"]["name"]
-            print 'Boss: {}'.format(boss_name)
-            sys.stdout.write('{}/{} '.format(int(round(boss_hp)), boss_max_hp))
-            sys.stdout.write(printing.progress_bar(boss_hp, boss_max_hp, boss_health_bar_width))
-            sys.stdout.write('\n\n')
-            print quest.summary(messages, boss_name)
+        if party_info["quest"]["active"]:
+            if "boss" in quest_info:
+                boss_hp = party_info["quest"]["progress"]["hp"]
+                boss_max_hp = quest_info["boss"]["hp"]
+                boss_name = quest_info["boss"]["name"]
+                print 'Boss: {}'.format(boss_name)
+                sys.stdout.write('{}/{} '.format(int(round(boss_hp)), boss_max_hp))
+                sys.stdout.write(printing.progress_bar(boss_hp, boss_max_hp, boss_health_bar_width))
+                sys.stdout.write('\n\n')
+                print quest.summary(messages, boss_name)
+            elif "collect" in quest_info:
+                print "Collecting items..."
+        else:
+            print "Waiting for members.\n"
     
 def print_table(messages, quest_type):
     string = printing.title("Quest Summary", 1) + '\n'
