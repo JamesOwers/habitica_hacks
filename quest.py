@@ -1,6 +1,11 @@
 import questutils
 import achievements
 import printing
+import sys
+
+# Config -----------------------------------------------------#
+boss_health_bar_width = 20          # Width of player exp bars
+#-------------------------------------------------------------#
 
 def get_quest_messages(chat_json, quest):
     """
@@ -85,7 +90,6 @@ def print_progress(habitica_content, party_info):
                 sys.stdout.write('{}/{} '.format(int(round(boss_hp)), boss_max_hp))
                 sys.stdout.write(printing.progress_bar(boss_hp, boss_max_hp, boss_health_bar_width))
                 sys.stdout.write('\n\n')
-                print quest.summary(messages, boss_name)
             elif "collect" in quest_info:
                 print "Collecting items..."
         else:
